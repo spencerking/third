@@ -47,3 +47,59 @@ def test_perform_stack_operation_dup():
     result = perform_stack_operation(stack, operator)
 
     assert result == ['4.0', '4.0']
+
+def test_perform_stack_operation_swap():
+    stack = ['1.0', '2.0']
+    operator = 'swap'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['2.0', '1.0']
+
+def test_perform_stack_operation_over():
+    stack = ['1.0', '2.0']
+    operator = 'over'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['1.0', '2.0', '1.0']
+
+def test_perform_stack_operation_rot():
+    stack = ['1.0', '2.0', '3.0']
+    operator = 'rot'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['2.0', '3.0', '1.0']
+
+def test_perform_stack_operation_drop():
+    stack = ['1.0', '2.0', '3.0']
+    operator = 'drop'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['1.0', '2.0']
+    
+def test_perform_stack_operation_2dup():
+    stack = ['1.0', '2.0', '3.0']
+    operator = '2dup'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['1.0', '2.0', '3.0', '2.0', '3.0']
+
+def test_perform_stack_operation_2swap():
+    stack = ['1.0', '2.0', '3.0', '4.0']
+    operator = '2swap'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['3.0', '4.0', '1.0', '2.0']
+
+def test_perform_stack_operation_2over():
+    stack = ['1.0', '2.0', '3.0', '4.0']
+    operator = '2over'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['1.0', '2.0', '3.0', '4.0', '1.0' , '2.0']
+
+def test_perform_stack_operation_2drop():
+    stack = ['1.0', '2.0', '3.0']
+    operator = '2drop'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['1.0']
