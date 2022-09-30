@@ -75,6 +75,27 @@ def test_perform_stack_operation_drop():
     result = perform_stack_operation(stack, operator)
 
     assert result == ['1.0', '2.0']
+
+def test_perform_stack_operation_nip():
+    stack = ['1.0', '2.0', '3.0']
+    operator = 'nip'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['1.0', '3.0']
+
+def test_perform_stack_operation_tuck():
+    stack = ['1.0', '2.0', '3.0']
+    operator = 'tuck'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['1.0', '3.0', '2.0', '3.0']
+
+def test_perform_stack_operation_minusRot():
+    stack = ['1.0', '2.0', '3.0']
+    operator = '-rot'
+    result = perform_stack_operation(stack, operator)
+
+    assert result == ['3.0', '1.0', '2.0']
     
 def test_perform_stack_operation_2dup():
     stack = ['1.0', '2.0', '3.0']

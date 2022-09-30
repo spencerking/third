@@ -1,11 +1,14 @@
+from stack import *
+
 ARITHMETIC_OPERATORS = ['+', '-', '*', '/']
-STACK_OPERATORS = ['dup', 'swap', 'over', 'rot', 'drop', '2swap', '2dup', '2over', '2drop']
+STACK_OPERATORS = ['dup', 'swap', 'over', 'rot', 'drop', 'nip', 'tuck', '-rot', '2swap', '2dup', '2over', '2drop']
 
 def tokenize(line):
     return line.split()
 
 def parse_tokens(stack, tokens):
     for token in tokens:
+        token = token.lower()
         if token.isnumeric():
             stack.append(float(token))
         elif token in ARITHMETIC_OPERATORS:
@@ -32,58 +35,29 @@ def perform_arithmetic(stack, operator):
 
 def perform_stack_operation(stack, operator):
     if operator == 'dup':
-        result = stack.pop()
-        stack.append(result)
-        stack.append(result)
+        return dup(stack)
     elif operator == 'swap':
-        oldTop = stack.pop()
-        newTop = stack.pop()
-        stack.append(oldTop)
-        stack.append(newTop)
+        return swap(stack)
     elif operator == 'over':
-        oldTop = stack.pop()
-        sandwich = stack.pop()
-        stack.append(sandwich)
-        stack.append(oldTop)
-        stack.append(sandwich)
+        return over(stack)
     elif operator == 'rot':
-        oldTop = stack.pop()
-        oldMiddle = stack.pop()
-        oldBottom = stack.pop()
-        stack.append(oldMiddle)
-        stack.append(oldTop)
-        stack.append(oldBottom)
+        return rot(stack)
     elif operator == 'drop':
-        stack.pop()
+        return drop(stack)
+    elif operator == 'nip':
+        return nip(stack)
+    elif operator == 'tuck':
+        return tuck(stack)
+    elif operator == '-rot':
+        return minusRot(stack)
     elif operator == '2dup':
-        top = stack.pop()
-        bottom = stack.pop()
-        stack.append(bottom)
-        stack.append(top)
-        stack.append(bottom)
-        stack.append(top)
+        return twoDup(stack)
     elif operator == '2swap':
-        oldTopTop = stack.pop()
-        oldTopBottom = stack.pop()
-        oldBottomTop = stack.pop()
-        oldBottomBottom = stack.pop()
-        stack.append(oldTopBottom)
-        stack.append(oldTopTop)
-        stack.append(oldBottomBottom)
-        stack.append(oldBottomTop)
+        return twoSwap(stack)
     elif operator == '2over':
-    	oldTopTop = stack.pop()
-    	oldTopBottom = stack.pop()
-    	sandwichTop = stack.pop()
-    	sandwichBottom = stack.pop()
-    	stack.append(sandwichBottom)
-    	stack.append(sandwichTop)
-    	stack.append(oldTopBottom)
-    	stack.append(oldTopTop)
-    	stack.append(sandwichBottom)
-    	stack.append(sandwichTop)
+        return twoOver(stack)
     elif operator == '2drop':
-        stack.pop()
-        stack.pop()
-
-    return stack
+        stack = drop(stack)
+        return drop(stack)
+    else:
+        return stack
