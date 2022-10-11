@@ -124,3 +124,14 @@ def test_perform_stack_operation_2drop():
     result = perform_stack_operation(stack, operator)
 
     assert result == ['1.0']
+
+def test_spaces():
+    result = spaces(10)
+
+    assert result == '          '
+    assert len(result) == 10
+
+def test_emit():
+    result = emit(33)
+
+    assert result == '!'
