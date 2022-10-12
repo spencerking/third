@@ -11,6 +11,8 @@ def tokenize(line):
     return line.split()
 
 def parse_tokens(stack, tokens):
+    defining_word = False
+    tokens = iter(tokens)
     for token in tokens:
         token = token.lower()
         if token.isnumeric():
@@ -22,11 +24,24 @@ def parse_tokens(stack, tokens):
         elif token in PRINT_OPERATORS:
             perform_print_operation(stack, token)
         elif token == ':':
-            print('Defining a new word')
             # Append the next token to USER_WORDS
+            user_token = next(tokens)
+            USER_WORDS.append(user_token)
+            
             # Add the rest of the string after the USER_WORD as a value in USER_WORD_DEFINITIONS
+            curr_token = next(tokens)
+            user_def = ''
+            while curr_token != ';':
+                user_def += curr_token
+                curr_token = next(tokens) # TODO: Need to handle StopIteration
+                
+            USER_WORD_DEFINITIONS[user_token] = user_def
+            
         elif token == 'print':
            print(stack[-1])
+        else:
+            print('Unrecognized token: ', token)
+            break
 
     return stack
 

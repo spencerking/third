@@ -13,6 +13,16 @@ def test_parse_tokens():
 
     assert result == [30.0]
 
+# TODO: Fix this test
+#def test_define_user_word():
+#    stack = []
+#    tokens = [':', 'ADD_PI', '3.14', '+']
+#    result = parse_tokens(stack, tokens)
+#
+#    assert True
+#    assert USER_WORDS == ['ADD_PI']
+#    assert USER_WORD_DEFINITIONS == {'ADD_PI': '3.14 +'}
+    
 def test_perform_arithmetic_addition():
     stack = [1.0, 1.0]
     operator = '+'
