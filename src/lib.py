@@ -3,7 +3,7 @@ from printOps import *
 
 ARITHMETIC_OPERATORS = ['+', '-', '*', '/']
 STACK_OPERATORS = ['dup', 'swap', 'over', 'rot', 'drop', 'nip', 'tuck', '-rot', '2swap', '2dup', '2over', '2drop']
-PRINT_OPERATORS = ['spaces', 'emit']
+PRINT_OPERATORS = ['spaces', 'emit', 'cr']
 USER_WORDS = []
 USER_WORD_DEFINITIONS = {} # USER_WORD: command string
 
@@ -92,3 +92,5 @@ def perform_print_operation(stack, operator):
         print(spaces(stack[-1]))
     elif operator == 'emit':
         print(emit(stack[-1]))
+    elif operator == 'cr':
+        print(cr)

@@ -8,3 +8,6 @@ def spaces(count):
 
 def emit(value):
     return ASCII_TABLE.get(value, '')
+
+def cr():
+    return "\n"

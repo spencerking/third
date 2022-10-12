@@ -145,3 +145,8 @@ def test_emit():
     result = emit(33)
 
     assert result == '!'
+
+def test_cr():
+    result = cr()
+
+    assert result == '\n'
